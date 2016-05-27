@@ -1,0 +1,26 @@
+<h1>Diablo Leaderboard</h1>
+<div class="row">
+  <div class="medium-8 medium-offset-2 columns">
+<table class="table table-inverse">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Paragon</th>
+      <th>Rift</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i = index; let leader of leaders | paginate: { itemsPerPage: 10, currentPage: p }">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ leader.battleTag }}</td>
+      <td>{{ leader.paragon }}</td>
+      <td>{{ leader.riftLevel }}</td>
+      <td>{{ leader.riftTime | date:'mmss' }}</td>
+    </tr>
+  </tbody>
+</table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
