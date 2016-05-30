@@ -10,16 +10,10 @@ export class LeaderboardService {
 
   constructor(private _http: Http){}
 
-  getLeaders(season){
-    console.log(season);
-    this._seasonurl = "https://us.api.battle.net/data/d3/season/"+season+"/leaderboard/rift-dh?access_token=sttjyvptcz9cspmrujtnjywy";
-    const filterByParagon = e => (e.player[0].data[5].number <= 800);
-    const unwrapPlayer =
-      e => e.player[0].data[2]["string"] + " Player: " +//HeroClass
-        e.player[0].data[0]["string"] + " Paragon:" + //BattleTag
-        e.player[0].data[5]["number"] + " Cleared GR: " + //ParagonLevel
-        e["data"][1]["number"]; //RiftLevel
+  getLeaders(season: String, rift: String, heroClass: string){
+    this._seasonurl = "https://us.api.battle.net/data/d3/season/"+season+"/leaderboard/"+rift+"-"+heroClass+"?access_token=sttjyvptcz9cspmrujtnjywy";
 
+    const filterByParagon = e => (e.player[0].data[5].number <= 800);
 
     var Player = function(heroClass: string, battleTag: string, paragon: string, riftLevel: string, riftTime: string){
       this.heroClass = heroClass;

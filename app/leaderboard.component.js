@@ -28,11 +28,11 @@ System.register(['@angular/core', './leaderboard.service', 'ng2-pagination'], fu
                 function LeaderboardComponent(_leaderboardService) {
                     this._leaderboardService = _leaderboardService;
                     this.leaders = [];
-                    this.displayLeaders(6);
+                    this.displayLeaders("6", "rift-hardcore", "barbarian");
                 }
-                LeaderboardComponent.prototype.displayLeaders = function (season) {
+                LeaderboardComponent.prototype.displayLeaders = function (season, rift, heroClass) {
                     var _this = this;
-                    this._leaderboardService.getLeaders(season)
+                    this._leaderboardService.getLeaders(season, rift, heroClass)
                         .subscribe(function (leaders) { return _this.leaders.push(leaders); });
                 };
                 ;

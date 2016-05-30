@@ -28,14 +28,9 @@ System.register(['@angular/http', 'rxjs/add/operator/map', 'rxjs/add/operator/fi
                 function LeaderboardService(_http) {
                     this._http = _http;
                 }
-                LeaderboardService.prototype.getLeaders = function (season) {
-                    console.log(season);
-                    this._seasonurl = "https://us.api.battle.net/data/d3/season/" + season + "/leaderboard/rift-dh?access_token=sttjyvptcz9cspmrujtnjywy";
+                LeaderboardService.prototype.getLeaders = function (season, rift, heroClass) {
+                    this._seasonurl = "https://us.api.battle.net/data/d3/season/" + season + "/leaderboard/" + rift + "-" + heroClass + "?access_token=sttjyvptcz9cspmrujtnjywy";
                     var filterByParagon = function (e) { return (e.player[0].data[5].number <= 800); };
-                    var unwrapPlayer = function (e) { return e.player[0].data[2]["string"] + " Player: " +
-                        e.player[0].data[0]["string"] + " Paragon:" +
-                        e.player[0].data[5]["number"] + " Cleared GR: " +
-                        e["data"][1]["number"]; }; //RiftLevel
                     var Player = function (heroClass, battleTag, paragon, riftLevel, riftTime) {
                         this.heroClass = heroClass;
                         this.battleTag = battleTag;
