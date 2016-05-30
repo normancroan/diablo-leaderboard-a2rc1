@@ -12,6 +12,10 @@ import {PaginatePipe, PaginationControlsCmp, PaginationService} from 'ng2-pagina
 export class LeaderboardComponent {
 
     leaders = [];
+    tableHeader = {
+      heroClass: 'Barbarian',
+      rift: 'Hardcore'
+    };
     displayLeaders(season, rift, heroClass){
       this._leaderboardService.getLeaders(season, rift, heroClass)
         .subscribe(leaders => this.leaders.push(leaders));

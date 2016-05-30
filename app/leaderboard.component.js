@@ -28,6 +28,10 @@ System.register(['@angular/core', './leaderboard.service', 'ng2-pagination'], fu
                 function LeaderboardComponent(_leaderboardService) {
                     this._leaderboardService = _leaderboardService;
                     this.leaders = [];
+                    this.tableHeader = {
+                        heroClass: 'Barbarian',
+                        rift: 'Hardcore'
+                    };
                     this.displayLeaders("6", "rift-hardcore", "barbarian");
                 }
                 LeaderboardComponent.prototype.displayLeaders = function (season, rift, heroClass) {
