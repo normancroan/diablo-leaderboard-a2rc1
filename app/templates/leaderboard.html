@@ -1,23 +1,44 @@
-<h1>{{ tableHeader.rift }} {{ tableHeader.heroClass }} Leaderboard</h1>
-<table class="table table-inverse">
-  <thead>
-    <tr>
-      <th>Rank</th>
-      <th>Player</th>
-      <th>Paragon</th>
-      <th>Rift</th>
-      <th>Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let i = index; let leader of leaders | paginate: { itemsPerPage: 10, currentPage: p }">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>{{ leader.battleTag }}</td>
-      <td>{{ leader.paragon }}</td>
-      <td>{{ leader.riftLevel }}</td>
-      <td>{{ leader.riftTime | date:'mmss' }}</td>
-    </tr>
-  </tbody>
-</table>
-<pagination-controls (pageChange)="p = $event">
-</pagination-controls>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-3">
+    <!-- Single button -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Choose a Class
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>
+      </div>
+    </div>
+    <p>...</p>
+  </div>
+  <div class="col-md-9">
+    <table class="table table-inverse">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Player</th>
+          <th>Paragon</th>
+          <th>Rift</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let leader of leaders | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{ leader.playerRank + 1 }}</td>
+          <td>{{ leader.battleTag }}</td>
+          <td>{{ leader.paragon }}</td>
+          <td>{{ leader.riftLevel }}</td>
+          <td>{{ leader.riftTime | date:'mmss' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event">
+    </pagination-controls>
+  </div>
+</div>
+</div>

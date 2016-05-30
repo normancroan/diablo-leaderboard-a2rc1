@@ -31,14 +31,15 @@ System.register(['@angular/http', 'rxjs/add/operator/map', 'rxjs/add/operator/fi
                 LeaderboardService.prototype.getLeaders = function (season, rift, heroClass) {
                     this._seasonurl = "https://us.api.battle.net/data/d3/season/" + season + "/leaderboard/" + rift + "-" + heroClass + "?access_token=sttjyvptcz9cspmrujtnjywy";
                     var filterByParagon = function (e) { return (e.player[0].data[5].number <= 800); };
-                    var Player = function (heroClass, battleTag, paragon, riftLevel, riftTime) {
+                    var Player = function (heroClass, battleTag, paragon, riftLevel, riftTime, index) {
                         this.heroClass = heroClass;
                         this.battleTag = battleTag;
                         this.paragon = paragon;
                         this.riftLevel = riftLevel;
                         this.riftTime = riftTime;
+                        this.playerRank = index;
                     };
-                    var createPlayer = function (e) { return new Player(e.player[0].data[2]["string"], e.player[0].data[0]["string"], e.player[0].data[5]["number"], e.data[1]["number"], e.data[2]["timestamp"]); };
+                    var createPlayer = function (e, i) { return new Player(e.player[0].data[2]["string"], e.player[0].data[0]["string"], e.player[0].data[5]["number"], e.data[1]["number"], e.data[2]["timestamp"], i); };
                     return this._http.get(this._seasonurl)
                         .map(function (res) { return res.json(); })
                         .mergeMap(function (item) { return item.row; })
