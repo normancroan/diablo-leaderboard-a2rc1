@@ -16,6 +16,12 @@ export class LeaderboardComponent {
       heroClass: 'Barbarian',
       rift: 'Hardcore'
     };
+    onLeaderboardChange(){
+      var selection = document.getElementById("leaderboardSelect").value;
+      this.leaders = [];
+      this.displayLeaders("6","rift-hardcore",selection);
+    }
+
     displayLeaders(season, rift, heroClass){
       this._leaderboardService.getLeaders(season, rift, heroClass)
         .subscribe(leaders => this.leaders.push(leaders));

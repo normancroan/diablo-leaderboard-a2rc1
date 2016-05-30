@@ -34,6 +34,11 @@ System.register(['@angular/core', './leaderboard.service', 'ng2-pagination'], fu
                     };
                     this.displayLeaders("6", "rift-hardcore", "barbarian");
                 }
+                LeaderboardComponent.prototype.onLeaderboardChange = function () {
+                    var selection = document.getElementById("leaderboardSelect").value;
+                    this.leaders = [];
+                    this.displayLeaders("6", "rift-hardcore", selection);
+                };
                 LeaderboardComponent.prototype.displayLeaders = function (season, rift, heroClass) {
                     var _this = this;
                     this._leaderboardService.getLeaders(season, rift, heroClass)

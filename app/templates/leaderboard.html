@@ -1,20 +1,26 @@
 <div class="container-fluid">
 <div class="row">
   <div class="col-md-3">
-    <!-- Single button -->
-    <div class="btn-group">
-      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Choose a Class
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
+    <form>
+        <select class="form-control" id="leaderboardSelect" (change)="onLeaderboardChange()">
+          <option value="barbarian">Barbarian</option>
+          <option value="crusader">Crusader</option>
+          <option value="dh">Demon Hunter</option>
+          <option value="wd">Witch Doctor</option>
+          <option value="wizard">Wizard</option>
+          <!-- need to handle return type for group rifts
+          <option value="2p">2 Players</option>
+          <option value="3p">3 Players</option>
+          <option value="4p">4 Players</option>
+          -->
+        </select>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Hardcore (not yet implemented)
+        </label>
       </div>
-    </div>
-    <p>...</p>
+    </form>
+    <p>Use the dropdown menu above to change leaderboards. <br><br>Results loaded are always current</p>
   </div>
   <div class="col-md-9">
     <table class="table table-inverse">
@@ -22,7 +28,7 @@
         <tr>
           <th>Rank</th>
           <th>Player</th>
-          <th>Paragon</th>
+          <th>Paragon/Class</th>
           <th>Rift</th>
           <th>Time</th>
         </tr>
@@ -31,7 +37,7 @@
         <tr *ngFor="let leader of leaders | paginate: { itemsPerPage: 10, currentPage: p }">
           <td>{{ leader.playerRank + 1 }}</td>
           <td>{{ leader.battleTag }}</td>
-          <td>{{ leader.paragon }}</td>
+          <td>{{ leader.paragon }} {{ leader.heroClass }}</td>
           <td>{{ leader.riftLevel }}</td>
           <td>{{ leader.riftTime | date:'mmss' }}</td>
         </tr>
