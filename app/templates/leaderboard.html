@@ -18,8 +18,8 @@
     <p>Use the dropdown menu above to change leaderboards. <br><br>Results loaded are always current</p>
   </div>
   <div class="col-md-5">
+    <h4>Softcore</h4>
     <table class="table table-inverse">
-      <thead align="right">Softcore</thead>
       <thead>
         <tr>
           <th>Rank</th>
@@ -30,7 +30,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let leader of leaders | paginate: { itemsPerPage: 8, currentPage: p }">
+        <tr *ngFor="let leader of leaders | paginate: { id: 'softcore', itemsPerPage: 8, currentPage: p1 }">
           <td>{{ leader.playerRank + 1 }}</td>
           <td>{{ leader.battleTag }}</td>
           <td>{{ leader.paragon }}</td>
@@ -39,12 +39,17 @@
         </tr>
       </tbody>
     </table>
-    <pagination-controls (pageChange)="p = $event">
+    <pagination-controls
+    id="softcore"
+    (pageChange)="p1 = $event"
+    maxSize="7"
+    directionLinks="true"
+    autoHide="true">
     </pagination-controls>
   </div>
   <div class="col-md-5">
+    <h4>Hardcore</h4>
     <table class="table table-inverse">
-      <thead align="right">Hardcore</thead>
       <thead>
         <tr>
           <th>Rank</th>
@@ -55,7 +60,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let leader of hcLeaders | paginate: { itemsPerPage: 8, currentPage: p }">
+        <tr *ngFor="let leader of hcLeaders | paginate: { id: 'hardcore', itemsPerPage: 8, currentPage: p }">
           <td>{{ leader.playerRank + 1 }}</td>
           <td>{{ leader.battleTag }}</td>
           <td>{{ leader.paragon }}</td>
@@ -64,7 +69,12 @@
         </tr>
       </tbody>
     </table>
-    <pagination-controls (pageChange)="p = $event">
+    <pagination-controls
+      id="hardcore"
+      (pageChange)="p = $event"
+      maxSize="7"
+      directionLinks="true"
+      autoHide="true">
     </pagination-controls>
   </div>
 </div>
