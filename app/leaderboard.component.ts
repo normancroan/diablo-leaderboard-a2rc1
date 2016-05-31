@@ -17,7 +17,7 @@ export class LeaderboardComponent {
       rift: 'Hardcore'
     };
     onLeaderboardChange(){
-      var selection = document.getElementById("leaderboardSelect").value;
+      const selection = (<HTMLInputElement>document.getElementById("leaderboardSelect")).value;
       this.leaders = [];
       this.displayLeaders("6","rift-hardcore",selection);
     }
