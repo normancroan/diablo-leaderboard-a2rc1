@@ -1,6 +1,6 @@
 <div class="container-fluid">
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <form>
         <select class="form-control" id="leaderboardSelect" (change)="onLeaderboardChange()">
           <option value="barbarian">Barbarian</option>
@@ -14,30 +14,51 @@
           <option value="4p">4 Players</option>
           -->
         </select>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> Hardcore (not yet implemented)
-        </label>
-      </div>
     </form>
     <p>Use the dropdown menu above to change leaderboards. <br><br>Results loaded are always current</p>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-5">
     <table class="table table-inverse">
+      <thead align="right">Softcore</thead>
       <thead>
         <tr>
           <th>Rank</th>
           <th>Player</th>
-          <th>Paragon/Class</th>
+          <th>Paragon</th>
           <th>Rift</th>
           <th>Time</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let leader of leaders | paginate: { itemsPerPage: 10, currentPage: p }">
+        <tr *ngFor="let leader of leaders | paginate: { itemsPerPage: 8, currentPage: p }">
           <td>{{ leader.playerRank + 1 }}</td>
           <td>{{ leader.battleTag }}</td>
-          <td>{{ leader.paragon }} {{ leader.heroClass }}</td>
+          <td>{{ leader.paragon }}</td>
+          <td>{{ leader.riftLevel }}</td>
+          <td>{{ leader.riftTime | date:'mmss' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event">
+    </pagination-controls>
+  </div>
+  <div class="col-md-5">
+    <table class="table table-inverse">
+      <thead align="right">Hardcore</thead>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>HC Player</th>
+          <th>Paragon</th>
+          <th>Rift</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let leader of hcLeaders | paginate: { itemsPerPage: 8, currentPage: p }">
+          <td>{{ leader.playerRank + 1 }}</td>
+          <td>{{ leader.battleTag }}</td>
+          <td>{{ leader.paragon }}</td>
           <td>{{ leader.riftLevel }}</td>
           <td>{{ leader.riftTime | date:'mmss' }}</td>
         </tr>
