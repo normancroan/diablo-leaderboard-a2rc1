@@ -29,7 +29,7 @@ System.register(['@angular/http', 'rxjs/add/operator/map', 'rxjs/add/operator/fi
                     this._http = _http;
                 }
                 LeaderboardService.prototype.getLeaders = function (season, rift, heroClass) {
-                    this._seasonurl = "https://us.api.battle.net/data/d3/season/" + season + "/leaderboard/" + rift + "-" + heroClass + "?access_token=sttjyvptcz9cspmrujtnjywy";
+                    this._seasonurl = "https://us.api.battle.net/data/d3/season/" + season + "/leaderboard/" + rift + "-" + heroClass + "?access_token=72x5t8s8qbn964avguf5vzs8";
                     var filterByParagon = function (e) { return (e.player[0].data[5].number <= 800); };
                     var Player = function (heroClass, battleTag, paragon, riftLevel, riftTime, index) {
                         this.heroClass = heroClass;

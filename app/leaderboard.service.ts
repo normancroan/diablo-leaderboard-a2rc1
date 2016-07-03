@@ -11,7 +11,7 @@ export class LeaderboardService {
   constructor(private _http: Http){}
 
   getLeaders(season: String, rift: String, heroClass: string){
-    this._seasonurl = "https://us.api.battle.net/data/d3/season/"+season+"/leaderboard/"+rift+"-"+heroClass+"?access_token=sttjyvptcz9cspmrujtnjywy";
+    this._seasonurl = "https://us.api.battle.net/data/d3/season/"+season+"/leaderboard/"+rift+"-"+heroClass+"?access_token=72x5t8s8qbn964avguf5vzs8";
 
     const filterByParagon = e => (e.player[0].data[5].number <= 800);
 
